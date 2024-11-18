@@ -15,7 +15,7 @@ Necesitará instalar:
     choco install make
     ```
 ### Linux Debian
--Si tu distribucion de debian no reconoce el make por defecto sigue estos comandos antes:
+Si tu distribucion de debian no reconoce el make por defecto sigue estos comandos antes:
 ```bash
 apt update
 apt install build-essential
