@@ -60,8 +60,17 @@ ifeq ($(detected_OS),Windows)
 else ifeq ($(detected_OS),Darwin)
 	$(install_macos)
 else
-	sudo apt-get update
-	sudo apt-get install -y gcc gnuplot
+	#el gestor de paquetes es apt o dnf
+	if command -v apt-get >/dev/null 2>&1; then \
+		echo "Usando apt-get para instalar dependencias..."; \
+		sudo apt-get update && sudo apt-get install -y gcc gnuplot; \
+	elif command -v dnf >/dev/null 2>&1; then \
+		echo "Usando dnf para instalar dependencias..."; \
+		sudo dnf install -y gcc gnuplot; \
+	else \
+		echo "No se pudo determinar el gestor de paquetes. Instale manualmente gcc y gnuplot."; \
+		exit 1; \
+	fi
 endif
 
 check-deps:
