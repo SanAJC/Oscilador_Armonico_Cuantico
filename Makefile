@@ -1,16 +1,16 @@
-# Detección del Sistema Operativo
+# Sistema Operativo
 ifeq ($(OS),Windows_NT)
     detected_OS := Windows
     EXE := .exe
     RM := del /Q
     GNUPLOT_CMD := wgnuplot
-    # En Windows, especificamos la ruta completa a gcc y las DLLs después de la instalación de MinGW
+    # En windows, especificamos la ruta completa a gcc y las DLLs después de la instalación de MinGW
     MINGW_PATH := C:\ProgramData\mingw64\mingw64
     MINGW_BIN := $(MINGW_PATH)\bin
     CC := $(MINGW_BIN)\gcc
     # Lista de DLLs necesarias
     REQUIRED_DLLS := libwinpthread-1.dll libgcc_s_seh-1.dll libstdc++-6.dll
-    # Comando de ejecución específico para Windows
+    
     EXEC_CMD := .\\
 else
     detected_OS := $(shell uname -s)
@@ -18,7 +18,7 @@ else
     RM := rm -f
     GNUPLOT_CMD := gnuplot
     CC := gcc
-    # Comando de ejecución específico para Linux/Unix
+   
     EXEC_CMD := ./
 endif
 
