@@ -10,12 +10,16 @@ ifeq ($(OS),Windows_NT)
     CC := $(MINGW_BIN)\gcc
     # Lista de DLLs necesarias
     REQUIRED_DLLS := libwinpthread-1.dll libgcc_s_seh-1.dll libstdc++-6.dll
+    # Comando de ejecución específico para Windows
+    EXEC_CMD := .\\
 else
     detected_OS := $(shell uname -s)
     EXE :=
     RM := rm -f
     GNUPLOT_CMD := gnuplot
     CC := gcc
+    # Comando de ejecución específico para Linux/Unix
+    EXEC_CMD := ./
 endif
 
 TARGET = oscillator$(EXE)
@@ -56,7 +60,8 @@ ifeq ($(detected_OS),Windows)
 else ifeq ($(detected_OS),Darwin)
 	$(install_macos)
 else
-	$(install_linux)
+	sudo apt-get update
+	sudo apt-get install -y gcc gnuplot
 endif
 
 check-deps:
@@ -76,7 +81,7 @@ $(TARGET): $(SRC)
 
 run: all
 	@echo "Ejecutando $(TARGET)..."
-	@.\$(TARGET)
+	$(EXEC_CMD)$(TARGET)
 	@echo "Ejecución completada."
 	@echo "La gráfica se ha guardado como 'energy_levels_plot.png'"
 
