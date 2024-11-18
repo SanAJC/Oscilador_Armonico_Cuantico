@@ -2,10 +2,6 @@
 
 ## Prerrequisitos
 
-### Linux
-- **GCC** y **Make** suelen estar instalados por defecto en la mayoría de distribuciones.
-- Si no están instalados, el **Makefile** los instalará automáticamente.
-
 ### Windows
 Necesitará instalar:
 
@@ -18,6 +14,12 @@ Necesitará instalar:
     # Instalar make
     choco install make
     ```
+### Linux Debian
+Si tu distribucion de debian no reconoce el make por defecto sigue estos comandos antes:
+```bash
+apt update
+apt install build-essential
+```
 
 ## Instalación
 
